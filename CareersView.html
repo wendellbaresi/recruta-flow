@@ -1,0 +1,18 @@
+<div id="tabContent-careers" class="hidden flex flex-col gap-6">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 oc-card border rounded-2xl p-5 shadow-sm">
+        <div>
+            <h2 class="text-xl font-bold font-montserrat oc-text-title flex items-center gap-2">
+                <i class="fa-solid fa-graduation-cap text-[#00d0e8]"></i> Planos de Cargos e Trilhas de Carreira
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Diretrizes de progressão profissional, faixas salariais e matriz de competências.</p>
+        </div>
+        <button onclick="UIManager.openModal('modalCareerEdit')" class="px-4 py-2 rounded-xl bg-[#00d0e8] text-[#041620] font-bold text-xs shadow-sm flex items-center gap-2 font-montserrat">
+            <i class="fa-solid fa-plus"></i> Novo Cargo / Trilha
+        </button>
+    </div>
+
+    <!-- GRID DE TRILHAS CADASTRADAS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="careersGridContainer">
+        <!-- Renderizado dinamicamente via CareerManager.render() -->
+    </div>
+</div>

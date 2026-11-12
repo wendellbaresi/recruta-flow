@@ -1,0 +1,164 @@
+<!-- MODAL DE FICHA COMPLETA DO CANDIDATO -->
+<div id="modalFicha" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-3xl w-full p-6 relative shadow-2xl">
+        <button onclick="UIManager.closeModal('modalFicha')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <h3 id="mName" class="font-montserrat font-bold text-2xl oc-text-title mb-2">Nome</h3>
+        <p class="text-xs text-slate-400 mb-4"><span id="mEmail"></span> | <span id="mPhone"></span></p>
+        <button onclick="UIManager.closeModal('modalFicha')" class="px-4 py-2 border rounded-xl text-xs font-bold">Fechar</button>
+    </div>
+</div>
+
+<!-- MODAL CADASTRAR/EDITAR CARGO -->
+<div id="modalCareerEdit" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+        <button onclick="UIManager.closeModal('modalCareerEdit')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <h3 class="font-montserrat font-bold text-base oc-text-title mb-4 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-[#00d0e8]"></i> Configurar Trilha de Carreira</h3>
+        <form onsubmit="CareerManager.handleSave(event)" class="space-y-3 text-xs">
+            <input type="hidden" id="careerId">
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Título do Cargo</label><input type="text" id="careerTitle" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block font-bold text-slate-400 uppercase mb-1">Senioridade</label>
+                    <select id="careerLevel" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+                        <option value="Júnior">Júnior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Sênior">Sênior</option>
+                        <option value="Especialista">Especialista</option>
+                    </select>
+                </div>
+                <div><label class="block font-bold text-slate-400 uppercase mb-1">Faixa Salarial</label><input type="text" id="careerSalary" required placeholder="4.500 - 6.500" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            </div>
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Hard Skills (Pesos)</label><input type="text" id="careerHardSkills" required placeholder="CRM (Peso 40), Zendesk (Peso 30)" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Soft Skills</label><input type="text" id="careerSoftSkills" required placeholder="Empatia, Comunicação" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button type="button" onclick="UIManager.closeModal('modalCareerEdit')" class="px-4 py-2 border rounded-lg font-bold">Cancelar</button>
+                <button type="submit" class="px-5 py-2 bg-[#00d0e8] text-[#041620] font-bold rounded-lg shadow">Salvar Trilha</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL CADASTRAR/EDITAR COLABORADOR (ORGANOGRAMA) -->
+<div id="modalEmployeeEdit" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+        <button onclick="UIManager.closeModal('modalEmployeeEdit')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <h3 class="font-montserrat font-bold text-base oc-text-title mb-4 flex items-center gap-2"><i class="fa-solid fa-user-pen text-[#00d0e8]"></i> Cadastro de Colaborador</h3>
+        <form onsubmit="OrgManager.handleSave(event)" class="space-y-3 text-xs">
+            <input type="hidden" id="empId">
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Nome Completo</label><input type="text" id="empName" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div class="grid grid-cols-2 gap-2">
+                <div><label class="block font-bold text-slate-400 uppercase mb-1">Cargo</label><input type="text" id="empRole" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+                <div><label class="block font-bold text-slate-400 uppercase mb-1">Departamento</label><input type="text" id="empDept" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block font-bold text-slate-400 uppercase mb-1">Líder Direto (Gestor)</label>
+                    <select id="empManagerId" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></select>
+                </div>
+                <div><label class="block font-bold text-slate-400 uppercase mb-1">E-mail</label><input type="email" id="empEmail" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            </div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button type="button" onclick="UIManager.closeModal('modalEmployeeEdit')" class="px-4 py-2 border rounded-lg font-bold">Cancelar</button>
+                <button type="submit" class="px-5 py-2 bg-[#00d0e8] text-[#041620] font-bold rounded-lg shadow">Salvar Registro</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL CADASTRAR/EDITAR VAGA -->
+<div id="modalJobEdit" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+        <button onclick="UIManager.closeModal('modalJobEdit')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <h3 class="font-montserrat font-bold text-base oc-text-title mb-4 flex items-center gap-2"><i class="fa-solid fa-briefcase text-[#00d0e8]"></i> Cadastro de Vaga</h3>
+        <form onsubmit="JobManager.handleSave(event)" class="space-y-3 text-xs">
+            <input type="hidden" id="jobId">
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Título da Vaga</label><input type="text" id="jobTitle" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div class="grid grid-cols-2 gap-2">
+                <div><label class="block font-bold text-slate-400 uppercase mb-1">Departamento</label><input type="text" id="jobDept" required class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+                <div>
+                    <label class="block font-bold text-slate-400 uppercase mb-1">Status</label>
+                    <select id="jobStatus" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+                        <option value="Aberta">Aberta</option>
+                        <option value="Pausada">Pausada</option>
+                        <option value="Encerrada">Encerrada</option>
+                    </select>
+                </div>
+            </div>
+            <div><label class="block font-bold text-slate-400 uppercase mb-1">Keywords de Análise (separadas por vírgula)</label><input type="text" id="jobKeywords" required placeholder="crm, zendesk, nps" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title"></div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button type="button" onclick="UIManager.closeModal('modalJobEdit')" class="px-4 py-2 border rounded-lg font-bold">Cancelar</button>
+                <button type="submit" class="px-5 py-2 bg-[#00d0e8] text-[#041620] font-bold rounded-lg shadow">Salvar Vaga</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL DE IMPORTAR LINKEDIN -->
+<div id="modalLinkedIn" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-xl w-full p-6 shadow-2xl relative">
+        <button onclick="UIManager.closeModal('modalLinkedIn')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-[#0077b5] text-white flex items-center justify-center">
+                <i class="fa-brands fa-linkedin text-sm"></i>
+            </div>
+            <h3 class="font-montserrat font-bold text-base oc-text-title">Importar Perfil do LinkedIn</h3>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">
+            Copie todo o texto da página do perfil do candidato no LinkedIn e cole no campo abaixo para triagem e extração via IA.
+        </p>
+        
+        <form onsubmit="ParserService.handleLinkedInSubmit(event)" class="space-y-3 text-xs">
+            <div>
+                <label class="block font-bold text-slate-400 uppercase mb-1">Texto Bruto do Perfil</label>
+                <textarea id="liRawText" rows="7" required placeholder="Cole aqui o texto copiado do perfil do LinkedIn..." class="w-full bg-slate-50 dark:bg-slate-900 border rounded-xl p-3 oc-text-title font-mono text-[11px]"></textarea>
+            </div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button type="button" onclick="UIManager.closeModal('modalLinkedIn')" class="px-4 py-2 border rounded-xl font-bold">Cancelar</button>
+                <button type="submit" class="px-5 py-2 bg-[#0077b5] hover:bg-[#006396] text-white font-bold rounded-xl shadow">Extrair e Triar IA</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL MANUAL DE ADICIONAR CANDIDATO -->
+<div id="modalAddManual" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="oc-card border rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+        <button onclick="UIManager.closeModal('modalAddManual')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <h3 class="font-montserrat font-bold text-base oc-text-title mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-user-plus text-[#00d0e8]"></i> Inserir Candidato Manualmente
+        </h3>
+        
+        <form onsubmit="CandidateManager.handleManualSubmit(event)" class="space-y-3 text-xs">
+            <div>
+                <label class="block font-bold text-slate-400 uppercase mb-1">Nome Completo</label>
+                <input type="text" id="addName" required placeholder="Ex: Lucas Ferreira Silva" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block font-bold text-slate-400 uppercase mb-1">WhatsApp / Telefone</label>
+                    <input type="text" id="addPhone" required placeholder="(61) 99999-0000" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-400 uppercase mb-1">Cidade / UF</label>
+                    <input type="text" id="addLoc" required placeholder="Brasília - DF" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+                </div>
+            </div>
+            <div>
+                <label class="block font-bold text-slate-400 uppercase mb-1">E-mail</label>
+                <input type="email" id="addEmail" required placeholder="candidato@email.com" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-400 uppercase mb-1">Pretensão Salarial (R$)</label>
+                <input type="text" id="addPretension" placeholder="3.500,00" class="w-full bg-slate-50 dark:bg-slate-900 border rounded-lg p-2.5 oc-text-title">
+            </div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button type="button" onclick="UIManager.closeModal('modalAddManual')" class="px-3 py-1.5 border rounded-lg font-bold">Cancelar</button>
+                <button type="submit" class="px-4 py-1.5 bg-[#00d0e8] text-[#041620] font-bold rounded-lg shadow">Salvar e Triar</button>
+            </div>
+        </form>
+    </div>
+</div>

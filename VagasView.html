@@ -1,0 +1,17 @@
+<div id="tabContent-jobs" class="hidden flex flex-col gap-6">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 oc-card border rounded-2xl p-5 shadow-sm">
+        <div>
+            <h2 class="text-xl font-bold font-montserrat oc-text-title flex items-center gap-2">
+                <i class="fa-solid fa-briefcase text-[#00d0e8]"></i> Cadastro e Gestão de Vagas
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Gerenciamento de posições abertas, departamentos e palavras-chave para IA.</p>
+        </div>
+        <button onclick="UIManager.openModal('modalJobEdit')" class="px-4 py-2 rounded-xl bg-[#00d0e8] text-[#041620] font-bold text-xs shadow-sm flex items-center gap-2 font-montserrat">
+            <i class="fa-solid fa-plus"></i> Nova Vaga
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="jobsGridContainer">
+        <!-- Renderizado dinamicamente via JobManager.render() -->
+    </div>
+</div>
