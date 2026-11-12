@@ -1,6 +1,5 @@
 var VIPS = [
-  "wendell.bzinho@gmail.com",
-  "rlmarquesconsultoria@gmail.com"
+  "SEU_EMAIL_AQUI@gmail.com"
 ];
 
 function checkAccess() {
